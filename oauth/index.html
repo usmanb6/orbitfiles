@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Back to OrbitFiles</title>
+<style>
+  :root {
+    --bg: #F6F7F9; --surface: #FFFFFF; --border: #E3E6EB;
+    --text: #14171C; --muted: #5B6472; --accent: #2F5BEA;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0F1115; --surface: #171A20; --border: #2A2F38;
+      --text: #ECEEF2; --muted: #A2AAB8; --accent: #7C9BFF; }
+  }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif; }
+  main { max-width: 480px; margin: 0 auto; padding: 64px 16px; text-align: center; }
+  a.button { display: inline-block; margin-top: 16px; padding: 12px 24px; border-radius: 12px;
+    background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }
+  p { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Back to OrbitFiles</h1>
+  <p>Signing in finished. If the app didn't open by itself, tap the button.</p>
+  <a class="button" id="back" href="com.bhana.orbitfiles:/oauth">Open OrbitFiles</a>
+</main>
+<script>
+  // Some services (Box) only send sign-ins back to https pages. This page
+  // hands the result to the app and keeps nothing.
+  var keep = ['code', 'state', 'error', 'error_description'];
+  var from = new URLSearchParams(location.search);
+  var to = new URLSearchParams();
+  keep.forEach(function (k) { if (from.has(k)) to.set(k, from.get(k)); });
+  var target = 'com.bhana.orbitfiles:/oauth?' + to.toString();
+  document.getElementById('back').href = target;
+  history.replaceState(null, '', location.pathname);
+  location.replace(target);
+</script>
+</body>
+</html>
