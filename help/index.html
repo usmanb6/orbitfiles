@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrbitFiles Connection Help</title>
+<meta name="description" content="How to connect OrbitFiles to Google Drive, Dropbox, OneDrive, pCloud, Mega, Amazon S3, Cloudflare R2, Wasabi, Backblaze B2, SFTP, FTP, SMB and WebDAV.">
+<!-- Published at https://usmanb6.github.io/orbitfiles/help/ from the public repo usmanb6/orbitfiles: copy changes there. Opened from More › How to connect. -->
+<style>
+  :root {
+    --bg: #F6F7F9; --surface: #FFFFFF; --border: #E3E6EB;
+    --text: #14171C; --muted: #5B6472; --accent: #2F5BEA;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0F1115; --surface: #171A20; --border: #2A2F38;
+      --text: #ECEEF2; --muted: #A2AAB8; --accent: #7C9BFF; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
+  header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  header svg { width: 52px; height: 52px; flex: none; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 0; }
+  .summary { background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px; margin: 16px 0 8px; }
+  nav { margin: 16px 0; color: var(--muted); font-size: 15px; }
+  nav a { white-space: nowrap; }
+  h2 { font-size: 21px; margin: 40px 0 4px; }
+  h3 { font-size: 18px; margin: 28px 0 6px; scroll-margin-top: 12px; }
+  ol, ul { padding-left: 22px; } li { margin: 6px 0; }
+  a { color: var(--accent); }
+  code { font: 14px ui-monospace, SFMono-Regular, Consolas, monospace;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1px 5px; word-break: break-all; }
+  .tip { color: var(--muted); font-size: 15px; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#2F5BEA"/><g fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M29.9 27.7A30 30 0 0 1 70.1 27.7M65.1 27.5 70.1 27.7 69.4 22.8"/><path d="M79.3 43.8A30 30 0 0 1 59.3 78.5M61.9 74.3 59.3 78.6 63.9 80.4"/><path d="M40.7 78.5A30 30 0 0 1 20.7 43.8M23 48.2 20.6 43.7 16.7 46.8"/></g><circle cx="24" cy="35" r="8" fill="#F28A12" stroke="#2F5BEA" stroke-width="3"/><circle cx="76" cy="35" r="8" fill="#38B2F5" stroke="#2F5BEA" stroke-width="3"/><circle cx="50" cy="80" r="8" fill="#22C55E" stroke="#2F5BEA" stroke-width="3"/><rect x="35" y="37" width="30" height="26" rx="8" fill="#fff"/><path d="M41 45a2 2 0 0 1 2-2h5l2.5 2.5H57a2 2 0 0 1 2 2V55a2 2 0 0 1-2 2H43a2 2 0 0 1-2-2z" fill="#2F5BEA"/></svg>
+    <h1>Connecting your storage</h1>
+  </header>
+
+  <p class="summary">To add a connection, open the <strong>Connections</strong> tab, tap <strong>+</strong> and choose the service. Some services open their own sign-in page; for the others you type in a key or a password. Tap <strong>Test</strong> to check it, then <strong>Save</strong>. Your passwords and keys are stored encrypted on your phone and are only sent to the service itself.</p>
+
+  <nav>
+    Sign in: <a href="#gdrive">Google Drive</a> · <a href="#dropbox">Dropbox</a> · <a href="#onedrive">OneDrive</a> · <a href="#pcloud">pCloud</a> · <a href="#mega">Mega</a><br>
+    Buckets: <a href="#s3">Amazon S3</a> · <a href="#r2">Cloudflare R2</a> · <a href="#wasabi">Wasabi</a> · <a href="#b2">Backblaze B2</a> · <a href="#s3compatible">S3-compatible</a><br>
+    Servers: <a href="#sftp">SFTP</a> · <a href="#ftp">FTP</a> · <a href="#smb">SMB</a> · <a href="#webdav">WebDAV</a><br>
+    <a href="#problems">If it doesn’t connect</a>
+  </nav>
+
+  <h2>Services you sign in to</h2>
+  <p>These open the service’s own sign-in page in your browser. OrbitFiles never sees your password; the service gives it permission to your files, which you can remove at any time in your account’s settings.</p>
+
+  <h3 id="gdrive">Google Drive</h3>
+  <ol>
+    <li>Choose <strong>Google Drive</strong> and tap <strong>Sign in</strong>.</li>
+    <li>Pick your Google account and allow access to your files.</li>
+  </ol>
+  <p class="tip">If Google says it hasn’t verified the app yet, tap <strong>Advanced</strong> and continue: Google is still reviewing OrbitFiles. Google Docs, Sheets and Slides are copied as Word, Excel and PowerPoint files.</p>
+
+  <h3 id="dropbox">Dropbox</h3>
+  <ol>
+    <li>Choose <strong>Dropbox</strong> and tap <strong>Sign in</strong>.</li>
+    <li>Sign in and tap <strong>Allow</strong>.</li>
+  </ol>
+
+  <h3 id="onedrive">OneDrive</h3>
+  <ol>
+    <li>Choose <strong>OneDrive</strong> and tap <strong>Sign in</strong>.</li>
+    <li>Sign in with your Microsoft account and accept.</li>
+  </ol>
+  <p class="tip">Work and school accounts may need their administrator to approve OrbitFiles first.</p>
+
+  <h3 id="pcloud">pCloud</h3>
+  <ol>
+    <li>Choose <strong>pCloud</strong> and tap <strong>Sign in</strong>.</li>
+    <li>Sign in and allow access. OrbitFiles finds out whether your account is in the US or EU region by itself.</li>
+  </ol>
+
+  <h3 id="mega">Mega</h3>
+  <ol>
+    <li>Choose <strong>Mega</strong>.</li>
+    <li>Enter the email and password you sign in to mega.nz with.</li>
+  </ol>
+  <p class="tip">Mega doesn’t offer a separate sign-in page, so this one is typed in. It stays on your phone.</p>
+
+  <h2>Bucket storage (S3 and similar)</h2>
+  <p>These use an <strong>access key</strong>: a pair of values made in the service’s website, so you don’t give OrbitFiles your password. The secret part is shown only once, so copy it straight away. Leave <strong>Bucket</strong> empty to see all your buckets, or enter one bucket’s name to open just that one.</p>
+
+  <h3 id="s3">Amazon S3</h3>
+  <ol>
+    <li>In the AWS console, open <strong>IAM › Users</strong>, choose or create a user, and give it access to S3 (for example the <code>AmazonS3FullAccess</code> policy, or a policy for one bucket).</li>
+    <li>Open the user’s <strong>Security credentials</strong> tab and choose <strong>Create access key</strong>.</li>
+    <li>In OrbitFiles choose <strong>Amazon S3</strong>, paste the <strong>Access key ID</strong> and <strong>Secret access key</strong>, and pick the <strong>Region</strong> your buckets are in.</li>
+  </ol>
+  <p class="tip">If the key may only use one bucket, enter that bucket’s name: it can’t list the others.</p>
+
+  <h3 id="r2">Cloudflare R2</h3>
+  <ol>
+    <li>In the Cloudflare dashboard open <strong>R2</strong>. If you don’t have a bucket yet, choose <strong>Create bucket</strong>.</li>
+    <li>Choose <strong>Manage API tokens › Create Account API token</strong>. Give it <strong>Object Read &amp; Write</strong> for your bucket (or all buckets) and create it.</li>
+    <li>Copy the <strong>Access Key ID</strong>, the <strong>Secret Access Key</strong> and the S3 endpoint (<code>https://&lt;account-id&gt;.r2.cloudflarestorage.com</code>). You don’t need the “Token value”.</li>
+    <li>In OrbitFiles choose <strong>Cloudflare R2</strong>, paste the three values, and type your <strong>bucket name</strong>.</li>
+  </ol>
+  <p class="tip">An Object Read &amp; Write token can’t list buckets, so the bucket name is needed. The endpoint is the address without the bucket name on the end. Buckets in a jurisdiction (such as EU) have their own endpoint: copy it from the bucket’s <strong>Settings</strong> page.</p>
+
+  <h3 id="wasabi">Wasabi</h3>
+  <ol>
+    <li>In the Wasabi console open <strong>Access Keys</strong> and choose <strong>Create new access key</strong>.</li>
+    <li>In OrbitFiles choose <strong>Wasabi</strong>, paste the access key and secret key, and pick the <strong>Region</strong> your buckets are in.</li>
+  </ol>
+
+  <h3 id="b2">Backblaze B2</h3>
+  <ol>
+    <li>On backblaze.com open <strong>Application Keys</strong> and choose <strong>Add a New Application Key</strong> (Read and Write).</li>
+    <li>In OrbitFiles choose <strong>Backblaze B2</strong> and paste the <strong>keyID</strong> into Key ID and the <strong>applicationKey</strong> into Application key.</li>
+  </ol>
+  <p class="tip">The Master Application Key works too, but a separate key is safer: you can delete it without affecting anything else.</p>
+
+  <h3 id="s3compatible">S3-compatible (MinIO and others)</h3>
+  <ol>
+    <li>Make an access key in your server or provider (in MinIO: <strong>Access Keys › Create access key</strong>).</li>
+    <li>In OrbitFiles choose <strong>S3-compatible</strong>, paste the keys, and enter the <strong>Endpoint URL</strong> your provider gives, for example <code>https://minio.example.com:9000</code>.</li>
+  </ol>
+
+  <h2>Your own servers</h2>
+  <p>For a server at home, your phone needs to reach it: on the same Wi-Fi, or over a VPN such as Tailscale when you’re out. Use the server’s name or IP address as the <strong>Host</strong>.</p>
+
+  <h3 id="sftp">SFTP (SSH)</h3>
+  <ol>
+    <li>Choose <strong>SFTP</strong> and enter the <strong>Host</strong>, <strong>Port</strong> (usually 22) and <strong>Username</strong>.</li>
+    <li>Enter your password, or tap <strong>Use a key file instead</strong> and choose your private key (for example <code>id_ed25519</code>, not the <code>.pub</code> one). If the key has a passphrase, type it in <strong>Key passphrase</strong>.</li>
+    <li>The first time, OrbitFiles shows the server’s key fingerprint and asks whether to trust it. If you can, compare it with the server’s own (run <code>ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub</code> on it), then tap <strong>Trust</strong>.</li>
+  </ol>
+  <p class="tip">To get a key file onto your phone, copy it into Downloads (by USB, or from your computer) and delete it from there once the connection is saved: OrbitFiles keeps its own encrypted copy. PuTTY <code>.ppk</code> keys need converting first: in PuTTYgen, use <strong>Conversions › Export OpenSSH key</strong>. If OrbitFiles later says the server’s key has changed and you didn’t change the server, don’t continue: someone may be in between.</p>
+
+  <h3 id="ftp">FTP</h3>
+  <ol>
+    <li>Choose <strong>FTP</strong> and enter the <strong>Host</strong>, <strong>Port</strong> (usually 21), <strong>Username</strong> and <strong>Password</strong>.</li>
+    <li>Optionally, set a <strong>Starting folder</strong> such as <code>/files</code>.</li>
+  </ol>
+  <p class="tip">Plain FTP doesn’t encrypt your password or files. Use SFTP when the server offers it.</p>
+
+  <h3 id="smb">SMB (Windows sharing, NAS, Samba)</h3>
+  <ol>
+    <li>Choose <strong>SMB</strong> and enter the computer or NAS as the <strong>Host</strong> (for example <code>192.168.1.20</code>).</li>
+    <li>Enter the <strong>Username</strong> and <strong>Password</strong> you use for the share. Leave <strong>Domain</strong> empty unless your network uses one.</li>
+    <li>Leave <strong>Starting folder</strong> empty to see all the shares, or enter one, such as <code>/photos</code>.</li>
+  </ol>
+  <p class="tip">On Windows, the username is your Windows account (for a Microsoft account, its email address) and the share must be turned on in the folder’s <strong>Properties › Sharing</strong>.</p>
+
+  <h3 id="webdav">WebDAV (Nextcloud, ownCloud and others)</h3>
+  <ol>
+    <li>Find your server’s WebDAV address. In Nextcloud it’s under <strong>Files › Files settings</strong> (bottom left), and looks like <code>https://cloud.example.com/remote.php/dav/files/USERNAME/</code>.</li>
+    <li>Choose <strong>WebDAV</strong>, paste the address into <strong>URL</strong>, and enter your <strong>Username</strong> and <strong>Password</strong>.</li>
+  </ol>
+  <p class="tip">If your account uses two-step login, make an app password (Nextcloud: <strong>Personal settings › Security › Create new app password</strong>) and use that instead of your normal password.</p>
+
+  <h2 id="problems">If it doesn’t connect</h2>
+  <ul>
+    <li><strong>“Couldn’t find the server”</strong>: check the host or endpoint for typos, and that your phone is online. For a home server, check you’re on the same Wi-Fi or VPN.</li>
+    <li><strong>“The server didn’t answer” or “refused the connection”</strong>: check the port, and that the server is on and allows connections from your network.</li>
+    <li><strong>“The keys were refused”</strong>: paste the access key and secret again; a missing character or space is the usual cause. If you no longer have the secret, make a new key.</li>
+    <li><strong>“These keys can’t list buckets”</strong>: enter the bucket name in Bucket.</li>
+    <li><strong>“There’s no bucket with that name here”</strong>: bucket names are lowercase and must match exactly; also check the endpoint or region.</li>
+    <li><strong>“Sign in again”</strong>: the service no longer accepts the sign-in (for example after you changed your password). Open the connection’s menu, choose <strong>Edit</strong>, and sign in again.</li>
+  </ul>
+  <p>Still stuck? Write to <a href="mailto:ubhana123@gmail.com?subject=OrbitFiles%20connection%20help">ubhana123@gmail.com</a> and say which service you’re connecting to. Never send your passwords or keys.</p>
+
+  <footer>OrbitFiles © 2026 Usman Bhana · <a href="../privacy/">Privacy and terms</a></footer>
+</main>
+</body>
+</html>
